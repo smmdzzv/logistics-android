@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Intent Request Codes-->
+    <integer name="login_code">001</integer>
+
+    <!--Permission Codes-->
+    <integer name="internet_permission_code">101</integer>
+</resources>

@@ -1,6 +1,9 @@
 package tj.ajoibot.ajoibotlogistics
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -25,5 +28,19 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        wakeUpSession()
+    }
+
+    private fun wakeUpSession() {
+        val token = application
+            .getSharedPreferences("tj.ajoibot.logistics.PREFERENCE_FILE_KEY", Context.MODE_PRIVATE)
+            .getString("token", null)
+        if (token != null) {
+             Log.d("sdf", "sdf")
+        } else {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivityForResult(intent, resources.getInteger(R.integer.login_code))
+        }
     }
 }
