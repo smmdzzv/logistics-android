@@ -29,18 +29,6 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        wakeUpSession()
-    }
 
-    private fun wakeUpSession() {
-        val token = application
-            .getSharedPreferences("tj.ajoibot.logistics.PREFERENCE_FILE_KEY", Context.MODE_PRIVATE)
-            .getString("token", null)
-        if (token != null) {
-             Log.d("sdf", "sdf")
-        } else {
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivityForResult(intent, resources.getInteger(R.integer.login_code))
-        }
     }
 }

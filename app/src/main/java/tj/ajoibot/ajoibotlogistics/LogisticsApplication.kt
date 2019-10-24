@@ -11,6 +11,7 @@ import org.kodein.di.generic.singleton
 import tj.ajoibot.ajoibotlogistics.data.network.RemoteDataSource
 import tj.ajoibot.ajoibotlogistics.data.repositories.AuthRepository
 import tj.ajoibot.ajoibotlogistics.internal.interfaces.IRemoteDataSource
+import tj.ajoibot.ajoibotlogistics.internal.utils.SharedSettings
 import tj.ajoibot.ajoibotlogistics.services.LogisticsService
 import tj.ajoibot.ajoibotlogistics.ui.login.LoginViewModelFactory
 
@@ -25,5 +26,7 @@ class LogisticsApplication : Application(), KodeinAware {
         bind() from singleton { AuthRepository(instance()) }
 
         bind() from provider { LoginViewModelFactory(instance()) }
+
+        bind() from singleton { SharedSettings(instance()) }
     }
 }
