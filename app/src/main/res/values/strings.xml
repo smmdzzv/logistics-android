@@ -5,4 +5,7 @@
     <string name="title_notifications">Notifications</string>
     <string name="title_login">Вход</string>
     <string name="btn_title_login">Войти</string>
+    <string name="title_car_loading">Загрузить</string>
+    <string name="title_car_unloading">Разгрузить</string>
+    <string name="title_car_exchange">Перевод</string>
 </resources>
