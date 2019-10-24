@@ -1,4 +1,4 @@
-package tj.ajoibot.ajoibotlogistics.ui.dashboard
+package tj.ajoibot.ajoibotlogistics.ui.unload
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import tj.ajoibot.ajoibotlogistics.R
 
-class DashboardFragment : Fragment() {
+class UnloadingFragment : Fragment() {
 
-    private lateinit var dashboardViewModel: DashboardViewModel
+    private lateinit var unloadingViewModel: UnloadingViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        dashboardViewModel =
-            ViewModelProviders.of(this).get(DashboardViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
+        unloadingViewModel =
+            ViewModelProviders.of(this).get(UnloadingViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_unloading, container, false)
         val textView: TextView = root.findViewById(R.id.text_dashboard)
-        dashboardViewModel.text.observe(this, Observer {
+        unloadingViewModel.text.observe(this, Observer {
             textView.text = it
         })
         return root

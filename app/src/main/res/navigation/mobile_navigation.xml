@@ -3,23 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_loading">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="tj.ajoibot.ajoibotlogistics.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/navigation_loading"
+        android:name="tj.ajoibot.ajoibotlogistics.ui.load.LoadingFragment"
+        android:label="@string/title_loading"
+        tools:layout="@layout/fragment_loading" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="tj.ajoibot.ajoibotlogistics.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_unloading"
+        android:name="tj.ajoibot.ajoibotlogistics.ui.unload.UnloadingFragment"
+        android:label="@string/title_unloading"
+        tools:layout="@layout/fragment_unloading" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="tj.ajoibot.ajoibotlogistics.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_transfer"
+        android:name="tj.ajoibot.ajoibotlogistics.ui.transfer.TransferFragment"
+        android:label="@string/title_transfer"
+        tools:layout="@layout/fragment_transfer" />
 </navigation>

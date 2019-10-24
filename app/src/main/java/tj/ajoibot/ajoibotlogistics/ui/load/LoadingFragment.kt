@@ -1,4 +1,4 @@
-package tj.ajoibot.ajoibotlogistics.ui.notifications
+package tj.ajoibot.ajoibotlogistics.ui.load
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import tj.ajoibot.ajoibotlogistics.R
 
-class NotificationsFragment : Fragment() {
+class LoadingFragment : Fragment() {
 
-    private lateinit var notificationsViewModel: NotificationsViewModel
+    private lateinit var loadingViewModel: LoadingViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        notificationsViewModel =
-            ViewModelProviders.of(this).get(NotificationsViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_notifications, container, false)
-        val textView: TextView = root.findViewById(R.id.text_notifications)
-        notificationsViewModel.text.observe(this, Observer {
+        loadingViewModel =
+            ViewModelProviders.of(this).get(LoadingViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_loading, container, false)
+        val textView: TextView = root.findViewById(R.id.text_home)
+        loadingViewModel.text.observe(this, Observer {
             textView.text = it
         })
         return root

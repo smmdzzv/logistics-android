@@ -1,10 +1,10 @@
-package tj.ajoibot.ajoibotlogistics.ui.home
+package tj.ajoibot.ajoibotlogistics.ui.load
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class HomeViewModel : ViewModel() {
+class LoadingViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is home Fragment"

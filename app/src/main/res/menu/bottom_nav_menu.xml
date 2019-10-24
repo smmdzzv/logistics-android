@@ -2,17 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_home"
+        android:id="@+id/navigation_loading"
         android:icon="@drawable/ic_car_loading"
         android:title="@string/title_car_loading" />
 
     <item
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_unloading"
         android:icon="@drawable/ic_car_unloading"
         android:title="@string/title_car_unloading" />
 
     <item
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/navigation_transfer"
         android:icon="@drawable/ic_car_sending"
         android:title="@string/title_car_exchange" />
 

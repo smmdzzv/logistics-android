@@ -1,4 +1,4 @@
-package tj.ajoibot.ajoibotlogistics.ui.home
+package tj.ajoibot.ajoibotlogistics.ui.transfer
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import tj.ajoibot.ajoibotlogistics.R
 
-class HomeFragment : Fragment() {
+class TransferFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
+    private lateinit var transferViewModel: TransferViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        homeViewModel =
-            ViewModelProviders.of(this).get(HomeViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_home, container, false)
-        val textView: TextView = root.findViewById(R.id.text_home)
-        homeViewModel.text.observe(this, Observer {
+        transferViewModel =
+            ViewModelProviders.of(this).get(TransferViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_transfer, container, false)
+        val textView: TextView = root.findViewById(R.id.text_notifications)
+        transferViewModel.text.observe(this, Observer {
             textView.text = it
         })
         return root

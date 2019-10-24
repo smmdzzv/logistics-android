@@ -1,9 +1,6 @@
 package tj.ajoibot.ajoibotlogistics
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -23,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
+                R.id.navigation_loading, R.id.navigation_unloading, R.id.navigation_transfer
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
