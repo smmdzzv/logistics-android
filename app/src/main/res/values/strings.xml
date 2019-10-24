@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Ajoibot Logistics</string>
+    <string name="app_name">Duob Logistics</string>
     <string name="title_loading">Загрузка в машину</string>
     <string name="title_unloading">Разгрузка машины</string>
     <string name="title_transfer">Трансфер между рейсами</string>
