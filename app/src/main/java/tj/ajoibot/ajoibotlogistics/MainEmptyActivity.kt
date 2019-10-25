@@ -3,15 +3,24 @@ package tj.ajoibot.ajoibotlogistics
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.closestKodein
 import org.kodein.di.generic.instance
+import tj.ajoibot.ajoibotlogistics.data.models.Result
 import tj.ajoibot.ajoibotlogistics.internal.utils.SharedSettings
+import tj.ajoibot.ajoibotlogistics.ui.main.MainViewModel
+import tj.ajoibot.ajoibotlogistics.ui.main.MainViewModelFactory
 
 class MainEmptyActivity : AppCompatActivity(), KodeinAware {
 
     override val kodein: Kodein by closestKodein()
+
+    private val mainViewModelFactory: MainViewModelFactory by instance()
+
+    private lateinit var vm: MainViewModel
 
     private val settings: SharedSettings by instance()
 
@@ -19,14 +28,38 @@ class MainEmptyActivity : AppCompatActivity(), KodeinAware {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_empty)
 
-        val activityIntent: Intent
+        vm =
+            ViewModelProvider(this.application as LogisticsApplication, mainViewModelFactory)
+                .get(MainViewModel::class.java)
 
-        if (settings.getToken().isNullOrBlank()) {
-            activityIntent = Intent(this, LoginActivity::class.java)
-        } else {
-            activityIntent = Intent(this, MainActivity::class.java)
-        }
+        if (settings.getToken().isNullOrBlank())
+            toLoginActivity()
+        else
+            vm.getAuthorizedUser()
 
+        setObservers()
+    }
+
+    private fun setObservers() {
+        vm.userResponse.observe(this, Observer { response ->
+            if (response.status === Result.Status.SUCCESS)
+                toMainActivity()
+            else
+                toLoginActivity()
+        })
+    }
+
+    private fun toLoginActivity() {
+        val intent = Intent(this, LoginActivity::class.java)
+        navigate(intent)
+    }
+
+    private fun toMainActivity() {
+        val intent = Intent(this, MainActivity::class.java)
+        navigate(intent)
+    }
+
+    private fun navigate(activityIntent: Intent) {
         startActivity(activityIntent)
         finish()
     }

@@ -1,4 +1,4 @@
-package tj.ajoibot.ajoibotlogistics.ui.login
+package tj.ajoibot.ajoibotlogistics.ui.main
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -10,23 +10,24 @@ import kotlinx.coroutines.launch
 import tj.ajoibot.ajoibotlogistics.data.models.Result
 import tj.ajoibot.ajoibotlogistics.data.models.request.Credentials
 import tj.ajoibot.ajoibotlogistics.data.models.response.AuthenticationResponse
+import tj.ajoibot.ajoibotlogistics.data.models.response.AuthorizedUserResponse
 import tj.ajoibot.ajoibotlogistics.data.repositories.AuthRepository
 
-class LoginViewModel(private val repository: AuthRepository): ViewModel() {
+class MainViewModel(private val repository: AuthRepository): ViewModel() {
 
-    private val _authorizeResponse = MutableLiveData<Result<AuthenticationResponse>>()
-    val authorizeResponse: LiveData<Result<AuthenticationResponse>>
-        get() = _authorizeResponse
+    private val _userResponse = MutableLiveData<Result<AuthorizedUserResponse>>()
+    val userResponse: LiveData<Result<AuthorizedUserResponse>>
+        get() = _userResponse
 
     /**
-     *Return authentication token
+     *Return authorized user
      */
-    fun authorize(credentials: Credentials){
+    fun getAuthorizedUser(){
         CoroutineScope(Dispatchers.IO).launch {
-            val response = repository.authorize(credentials)
-            _authorizeResponse.postValue(response)
+            val response = repository.getAuthorizedUser()
+            _userResponse.postValue(response)
 
-            Log.d("auth", "Token required $response")
+            Log.d("auth", "Authorized user data $response")
         }
     }
 }

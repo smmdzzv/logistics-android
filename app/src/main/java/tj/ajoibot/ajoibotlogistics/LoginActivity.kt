@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.activity_login.*
 import org.kodein.di.Kodein
@@ -16,6 +17,8 @@ import tj.ajoibot.ajoibotlogistics.ui.login.LoginViewModel
 import tj.ajoibot.ajoibotlogistics.ui.login.LoginViewModelFactory
 import tj.ajoibot.ajoibotlogistics.data.models.Result.Status
 import tj.ajoibot.ajoibotlogistics.internal.utils.SharedSettings
+import tj.ajoibot.ajoibotlogistics.ui.main.MainViewModel
+import tj.ajoibot.ajoibotlogistics.ui.main.MainViewModelFactory
 
 class LoginActivity : AppCompatActivity(), KodeinAware {
 
@@ -23,7 +26,7 @@ class LoginActivity : AppCompatActivity(), KodeinAware {
 
     private val loginViewModelFactory: LoginViewModelFactory by instance()
 
-    lateinit var viewModel: LoginViewModel
+    private lateinit var viewModel: LoginViewModel
 
     private val settings: SharedSettings by instance()
 

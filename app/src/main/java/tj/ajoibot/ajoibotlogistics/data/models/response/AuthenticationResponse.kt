@@ -1,5 +1,5 @@
 package tj.ajoibot.ajoibotlogistics.data.models.response
 
-data class AuthentificationResponse(
+data class AuthenticationResponse(
     val token: String
 )
