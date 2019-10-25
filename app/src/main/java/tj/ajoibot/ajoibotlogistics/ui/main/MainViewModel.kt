@@ -23,11 +23,12 @@ class MainViewModel(private val repository: AuthRepository): ViewModel() {
      *Return authorized user
      */
     fun getAuthorizedUser(){
-        CoroutineScope(Dispatchers.IO).launch {
-            val response = repository.getAuthorizedUser()
-            _userResponse.postValue(response)
+        if(_userResponse.value == null)
+            CoroutineScope(Dispatchers.IO).launch {
+                val response = repository.getAuthorizedUser()
+                _userResponse.postValue(response)
 
-            Log.d("auth", "Authorized user data $response")
-        }
+                Log.d("auth", "Authorized user data $response")
+            }
     }
 }

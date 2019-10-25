@@ -28,9 +28,8 @@ class MainEmptyActivity : AppCompatActivity(), KodeinAware {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_empty)
 
-        vm =
-            ViewModelProvider(this.application as LogisticsApplication, mainViewModelFactory)
-                .get(MainViewModel::class.java)
+        vm = ViewModelProvider(this.application as LogisticsApplication, mainViewModelFactory)
+            .get(MainViewModel::class.java)
 
         if (settings.getToken().isNullOrBlank())
             toLoginActivity()
