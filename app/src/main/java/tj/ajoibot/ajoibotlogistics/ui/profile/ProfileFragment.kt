@@ -14,15 +14,19 @@ import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
 import tj.ajoibot.ajoibotlogistics.LogisticsApplication
+import tj.ajoibot.ajoibotlogistics.MainActivity
 import tj.ajoibot.ajoibotlogistics.R
 import tj.ajoibot.ajoibotlogistics.data.models.Result
 import tj.ajoibot.ajoibotlogistics.data.models.response.AuthorizedUserResponse
+import tj.ajoibot.ajoibotlogistics.internal.utils.SharedSettings
 import tj.ajoibot.ajoibotlogistics.ui.main.MainViewModel
 import tj.ajoibot.ajoibotlogistics.ui.main.MainViewModelFactory
 
 class ProfileFragment : Fragment(), KodeinAware {
 
     override val kodein by closestKodein()
+
+    private val settings: SharedSettings by instance()
 
     private val mainViewModelFactory: MainViewModelFactory by instance()
 
@@ -51,7 +55,18 @@ class ProfileFragment : Fragment(), KodeinAware {
 
         setObservers()
 
+        setListeners()
+
         vm.getAuthorizedUser()
+    }
+
+    private fun setListeners(){
+        profile_logout_btn.setOnClickListener { logout() }
+    }
+
+    private fun logout(){
+        settings.saveToken("")
+        (this.activity as MainActivity).onUserLogout()
     }
 
     //TODO error handling

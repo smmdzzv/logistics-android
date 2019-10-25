@@ -1,5 +1,6 @@
 package tj.ajoibot.ajoibotlogistics
 
+import android.content.Intent
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
@@ -46,5 +47,15 @@ class MainActivity : AppCompatActivity(), KodeinAware {
             ViewModelProvider(this.application as LogisticsApplication, mainViewModelFactory)
                 .get(MainViewModel::class.java)
 
+    }
+
+    fun onUserLogout(){
+        launchLoginActivity()
+        finish()
+    }
+
+    private fun launchLoginActivity() {
+        val activityIntent = Intent(this, LoginActivity::class.java)
+        startActivity(activityIntent)
     }
 }
