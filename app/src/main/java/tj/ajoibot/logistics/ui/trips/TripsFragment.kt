@@ -44,7 +44,7 @@ class TripsFragment : Fragment(), KodeinAware {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = TripsRecyclerViewAdapter(this)
+        val adapter = TripsRecyclerViewAdapter(this, vm)
         trips_rv.layoutManager = LinearLayoutManager(this.context)
         trips_rv.adapter = adapter
         trips_rv.itemAnimator = DefaultItemAnimator()

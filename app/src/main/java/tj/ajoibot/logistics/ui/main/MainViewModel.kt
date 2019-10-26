@@ -26,6 +26,13 @@ class MainViewModel(
     val activeTrip: LiveData<Result<List<ActiveTrip>>>
         get() = _activeTripsResponse
 
+    private var _selectedTrip: ActiveTrip? = null
+    var selectedTrip: ActiveTrip?
+        get() = _selectedTrip
+        set(value) {
+            _selectedTrip = value
+        }
+
     /**
      *Return authorized user
      */

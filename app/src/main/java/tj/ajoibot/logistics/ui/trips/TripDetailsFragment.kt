@@ -5,13 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.navArgs
 import tj.ajoibot.logistics.R
 
-class TripDetailsFragment : Fragment() {
-
-    val args: TripDetailsFragmentArgs by navArgs()
+class TripDetailsFragment : BaseTripFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -21,10 +17,7 @@ class TripDetailsFragment : Fragment() {
 
         val root = inflater.inflate(R.layout.fragment_trip_details, container, false)
         val textView: TextView = root.findViewById(R.id.text_notifications)
-
-//        val tripId = arguments?.getString("tripId")
-
-        textView.text = args.tripId
+        textView.text = vm.selectedTrip?.id
 
         return root
     }
