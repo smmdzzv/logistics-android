@@ -42,7 +42,7 @@ class UnloadCarFragment : BaseTripFragment() {
         val fragment = BarcodeScannerFragment()
         (activity as MainActivity).addFragment(fragment, unload_car_frame.id)
 
-        setObservers() 
+        setObservers()
     }
 
     private fun setObservers() {

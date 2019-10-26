@@ -40,7 +40,7 @@ interface LogisticsService {
             val retrofit = Retrofit.Builder()
                 .addConverterFactory(MoshiConverterFactory.create())
                 .addCallAdapterFactory(CoroutineCallAdapterFactory())
-                .baseUrl("http://10.0.2.2:8000/api/")
+                .baseUrl("http://duob.ajoibot.tj/api/")
                 .client(client)
                 .build()
 

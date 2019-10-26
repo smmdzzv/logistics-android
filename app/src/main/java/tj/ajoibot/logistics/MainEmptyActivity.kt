@@ -30,13 +30,13 @@ class MainEmptyActivity : AppCompatActivity(), KodeinAware {
 
         vm = ViewModelProvider(this.application as LogisticsApplication, mainViewModelFactory)
             .get(MainViewModel::class.java)
-toMainActivity()
-//        if (settings.getToken().isNullOrBlank())
-//            toLoginActivity()
-//        else
-//            vm.getAuthorizedUser()
-//
-//        setObservers()
+
+        if (settings.getToken().isNullOrBlank())
+            toLoginActivity()
+        else
+            vm.getAuthorizedUser()
+
+        setObservers()
     }
 
     private fun setObservers() {
