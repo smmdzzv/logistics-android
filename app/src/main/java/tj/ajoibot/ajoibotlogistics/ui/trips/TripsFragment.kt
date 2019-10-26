@@ -1,4 +1,4 @@
-package tj.ajoibot.ajoibotlogistics.ui.load
+package tj.ajoibot.ajoibotlogistics.ui.trips
 
 import android.os.Bundle
 import android.util.Log
@@ -8,16 +8,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
-import tj.ajoibot.ajoibotlogistics.LogisticsApplication
 import tj.ajoibot.ajoibotlogistics.R
 import tj.ajoibot.ajoibotlogistics.ui.main.MainViewModel
 import tj.ajoibot.ajoibotlogistics.ui.main.MainViewModelFactory
 
-class LoadingFragment : Fragment(), KodeinAware {
+class TripsFragment : Fragment(), KodeinAware {
 
     override val kodein by closestKodein()
 
@@ -35,7 +33,7 @@ class LoadingFragment : Fragment(), KodeinAware {
                 .get(MainViewModel::class.java)
         } ?: throw Exception("Invalid Activity")
 
-        return inflater.inflate(R.layout.fragment_loading, container, false)
+        return inflater.inflate(R.layout.fragment_trips, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

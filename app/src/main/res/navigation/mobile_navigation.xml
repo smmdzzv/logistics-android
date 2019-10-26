@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_loading">
+    app:startDestination="@+id/navigation_trips">
 
     <fragment
-        android:id="@+id/navigation_loading"
-        android:name="tj.ajoibot.ajoibotlogistics.ui.load.LoadingFragment"
-        android:label="@string/title_loading"
-        tools:layout="@layout/fragment_loading" />
+        android:id="@+id/navigation_trips"
+        android:name="tj.ajoibot.ajoibotlogistics.ui.trips.TripsFragment"
+        android:label="@string/title_trips"
+        tools:layout="@layout/fragment_trips" />
 
     <fragment
         android:id="@+id/navigation_unloading"

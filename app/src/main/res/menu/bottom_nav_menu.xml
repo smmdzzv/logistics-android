@@ -2,9 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_loading"
-        android:icon="@drawable/ic_car_loading"
-        android:title="@string/title_car_loading" />
+        android:id="@+id/navigation_trips"
+        android:icon="@drawable/ic_truck"
+        android:title="@string/title_trips" />
 
     <item
         android:id="@+id/navigation_unloading"
