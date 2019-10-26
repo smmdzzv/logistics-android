@@ -7,25 +7,25 @@
 
     <fragment
         android:id="@+id/navigation_trips"
-        android:name="tj.ajoibot.ajoibotlogistics.ui.trips.TripsFragment"
+        android:name="tj.ajoibot.logistics.ui.trips.TripsFragment"
         android:label="@string/title_trips"
         tools:layout="@layout/fragment_trips" />
 
     <fragment
         android:id="@+id/navigation_unloading"
-        android:name="tj.ajoibot.ajoibotlogistics.ui.unload.UnloadingFragment"
+        android:name="tj.ajoibot.logistics.ui.unload.UnloadingFragment"
         android:label="@string/title_unloading"
         tools:layout="@layout/fragment_unloading" />
 
     <fragment
         android:id="@+id/navigation_transfer"
-        android:name="tj.ajoibot.ajoibotlogistics.ui.transfer.TransferFragment"
+        android:name="tj.ajoibot.logistics.ui.transfer.TransferFragment"
         android:label="@string/title_transfer"
         tools:layout="@layout/fragment_transfer" />
 
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="tj.ajoibot.ajoibotlogistics.ui.profile.ProfileFragment"
+        android:name="tj.ajoibot.logistics.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
 </navigation>
