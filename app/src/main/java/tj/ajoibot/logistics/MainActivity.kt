@@ -35,8 +35,6 @@ class MainActivity : AppCompatActivity(), KodeinAware {
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.navigation_trips,
-                R.id.navigation_unloading,
-                R.id.navigation_transfer,
                 R.id.navigation_profile
             )
         )

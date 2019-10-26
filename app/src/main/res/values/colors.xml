@@ -5,4 +5,6 @@
     <color name="colorAccent">#9561e2</color>
     <color name="colorBackground">#ffffff</color>
     <color name="colorOverlayBackgroundAccent">#43673AB7</color>
+
+    <color name="gray">#636b6f</color>
 </resources>

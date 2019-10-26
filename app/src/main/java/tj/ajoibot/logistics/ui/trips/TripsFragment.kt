@@ -8,10 +8,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.fragment_trips.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
 import tj.ajoibot.logistics.R
+import tj.ajoibot.logistics.ui.adapters.TripsRecyclerViewAdapter
 import tj.ajoibot.logistics.ui.main.MainViewModel
 import tj.ajoibot.logistics.ui.main.MainViewModelFactory
 
@@ -39,14 +44,22 @@ class TripsFragment : Fragment(), KodeinAware {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val adapter = TripsRecyclerViewAdapter(this)
+        trips_rv.layoutManager = LinearLayoutManager(this.context)
+        trips_rv.adapter = adapter
+        trips_rv.itemAnimator = DefaultItemAnimator()
+        val divider = DividerItemDecoration(trips_rv.context,
+            LinearLayoutManager(this.context).orientation
+        )
+        trips_rv.addItemDecoration(divider)
+
+        vm.activeTrip.observe(viewLifecycleOwner, Observer { trips ->
+            Log.d("trips", "Have trips in fragment $$trips")
+            if (trips.data != null)
+                adapter.setData(trips.data)
+        })
+
         vm.getActiveTrips()
 
-        setObservers()
-    }
-
-    private fun setObservers() {
-        vm.activeTripsResponse.observe(viewLifecycleOwner, Observer { trips ->
-            Log.d("trips", "Have trips in fragment $$trips")
-        })
     }
 }

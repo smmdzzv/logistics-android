@@ -9,7 +9,7 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 import tj.ajoibot.logistics.data.models.request.Credentials
-import tj.ajoibot.logistics.data.models.response.ActiveTripsResponse
+import tj.ajoibot.logistics.data.models.response.ActiveTrip
 import tj.ajoibot.logistics.data.models.response.AuthenticationResponse
 import tj.ajoibot.logistics.data.models.response.AuthorizedUserResponse
 import tj.ajoibot.logistics.internal.interfaces.IRequestTokenInterceptor
@@ -23,7 +23,7 @@ interface LogisticsService {
     suspend fun getAuthorizedUser(): Response<AuthorizedUserResponse>
 
     @GET("trips")
-    suspend fun getActiveTrips(): Response<List<ActiveTripsResponse>>
+    suspend fun getActiveTrips(): Response<List<ActiveTrip>>
 
     companion object {
         operator fun invoke(tokenInterceptor: IRequestTokenInterceptor): LogisticsService {

@@ -9,23 +9,24 @@
         android:id="@+id/navigation_trips"
         android:name="tj.ajoibot.logistics.ui.trips.TripsFragment"
         android:label="@string/title_trips"
-        tools:layout="@layout/fragment_trips" />
-
-    <fragment
-        android:id="@+id/navigation_unloading"
-        android:name="tj.ajoibot.logistics.ui.unload.UnloadingFragment"
-        android:label="@string/title_unloading"
-        tools:layout="@layout/fragment_unloading" />
-
-    <fragment
-        android:id="@+id/navigation_transfer"
-        android:name="tj.ajoibot.logistics.ui.transfer.TransferFragment"
-        android:label="@string/title_transfer"
-        tools:layout="@layout/fragment_transfer" />
+        tools:layout="@layout/fragment_trips" >
+        <action
+            android:id="@+id/show_trip_details"
+            app:destination="@id/navigation_trip_details" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_profile"
         android:name="tj.ajoibot.logistics.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/navigation_trip_details"
+        android:name="tj.ajoibot.logistics.ui.trips.TripDetailsFragment"
+        android:layout="@layout/fragment_trip_details" >
+        <argument
+            android:name="tripId"
+            app:argType="string" />
+    </fragment>
 </navigation>

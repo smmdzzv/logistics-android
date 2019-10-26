@@ -7,7 +7,7 @@ import tj.ajoibot.logistics.internal.base.BaseDataSource
 import tj.ajoibot.logistics.internal.interfaces.IRemoteDataSource
 import tj.ajoibot.logistics.services.LogisticsService
 import tj.ajoibot.logistics.data.models.Result
-import tj.ajoibot.logistics.data.models.response.ActiveTripsResponse
+import tj.ajoibot.logistics.data.models.response.ActiveTrip
 import tj.ajoibot.logistics.data.models.response.AuthorizedUserResponse
 
 class RemoteDataSource(private val api: LogisticsService) : IRemoteDataSource, BaseDataSource() {
@@ -19,7 +19,7 @@ class RemoteDataSource(private val api: LogisticsService) : IRemoteDataSource, B
         return getResult { api.authorize(credentials) }
     }
 
-    override suspend fun getActiveTrips(): Result<List<ActiveTripsResponse>> {
+    override suspend fun getActiveTrips(): Result<List<ActiveTrip>> {
         return getResult{ api.getActiveTrips()}
     }
 }

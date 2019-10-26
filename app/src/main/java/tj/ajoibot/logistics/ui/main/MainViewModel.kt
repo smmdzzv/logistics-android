@@ -8,7 +8,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import tj.ajoibot.logistics.data.models.Result
-import tj.ajoibot.logistics.data.models.response.ActiveTripsResponse
+import tj.ajoibot.logistics.data.models.response.ActiveTrip
 import tj.ajoibot.logistics.data.models.response.AuthorizedUserResponse
 import tj.ajoibot.logistics.data.repositories.AuthRepository
 import tj.ajoibot.logistics.internal.interfaces.ITripsRepository
@@ -22,8 +22,8 @@ class MainViewModel(
     val userResponse: LiveData<Result<AuthorizedUserResponse>>
         get() = _userResponse
 
-    private val _activeTripsResponse = MutableLiveData<Result<List<ActiveTripsResponse>>>()
-    val activeTripsResponse: LiveData<Result<List<ActiveTripsResponse>>>
+    private val _activeTripsResponse = MutableLiveData<Result<List<ActiveTrip>>>()
+    val activeTrip: LiveData<Result<List<ActiveTrip>>>
         get() = _activeTripsResponse
 
     /**

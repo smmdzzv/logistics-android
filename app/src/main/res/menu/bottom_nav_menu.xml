@@ -7,16 +7,6 @@
         android:title="@string/title_trips" />
 
     <item
-        android:id="@+id/navigation_unloading"
-        android:icon="@drawable/ic_car_unloading"
-        android:title="@string/title_car_unloading" />
-
-    <item
-        android:id="@+id/navigation_transfer"
-        android:icon="@drawable/ic_car_sending"
-        android:title="@string/title_car_exchange" />
-
-    <item
         android:id="@+id/navigation_profile"
         android:icon="@drawable/ic_profile"
         android:title="@string/title_profile" />

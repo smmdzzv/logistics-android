@@ -2,7 +2,7 @@ package tj.ajoibot.logistics.data.models.response
 import com.squareup.moshi.Json
 
 
-data class ActiveTripsResponse(
+data class ActiveTrip(
     @Json(name = "carId")
     val carId: String = "",
     @Json(name = "code")
