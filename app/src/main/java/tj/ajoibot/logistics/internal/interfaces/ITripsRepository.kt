@@ -5,4 +5,6 @@ import tj.ajoibot.logistics.data.models.response.ActiveTrip
 
 interface ITripsRepository {
     suspend fun getActiveTrips(): Result<List<ActiveTrip>>
+
+    suspend fun unloadItem(tripId: String, itemCode: String)
 }

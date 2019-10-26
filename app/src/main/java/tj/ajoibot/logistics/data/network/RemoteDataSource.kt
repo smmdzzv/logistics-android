@@ -1,6 +1,7 @@
 package tj.ajoibot.logistics.data.network
 
 
+import kotlinx.coroutines.CompletableJob
 import tj.ajoibot.logistics.data.models.request.Credentials
 import tj.ajoibot.logistics.data.models.response.AuthenticationResponse
 import tj.ajoibot.logistics.internal.base.BaseDataSource
@@ -21,5 +22,9 @@ class RemoteDataSource(private val api: LogisticsService) : IRemoteDataSource, B
 
     override suspend fun getActiveTrips(): Result<List<ActiveTrip>> {
         return getResult{ api.getActiveTrips()}
+    }
+
+    override suspend fun unloadItem(tripId: String, itemCode: String) {
+        return api.unloadItem(tripId, itemCode)
     }
 }

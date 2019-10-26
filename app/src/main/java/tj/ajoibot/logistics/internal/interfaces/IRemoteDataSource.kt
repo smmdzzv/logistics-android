@@ -1,5 +1,6 @@
 package tj.ajoibot.logistics.internal.interfaces
 
+import kotlinx.coroutines.CompletableJob
 import tj.ajoibot.logistics.data.models.Result
 import tj.ajoibot.logistics.data.models.request.Credentials
 import tj.ajoibot.logistics.data.models.response.ActiveTrip
@@ -12,4 +13,6 @@ interface IRemoteDataSource {
     suspend fun getAuthorizedUser(): Result<AuthorizedUserResponse>
 
     suspend fun getActiveTrips(): Result<List<ActiveTrip>>
+
+    suspend fun unloadItem(tripId: String, itemCode: String)
 }

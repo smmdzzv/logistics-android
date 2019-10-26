@@ -19,6 +19,7 @@ import tj.ajoibot.logistics.internal.interfaces.IRequestTokenInterceptor
 import tj.ajoibot.logistics.internal.interfaces.ITripsRepository
 import tj.ajoibot.logistics.internal.utils.SharedSettings
 import tj.ajoibot.logistics.services.LogisticsService
+import tj.ajoibot.logistics.ui.barcode.BarCodeViewModelFactory
 import tj.ajoibot.logistics.ui.login.LoginViewModelFactory
 import tj.ajoibot.logistics.ui.main.MainViewModelFactory
 
@@ -48,9 +49,10 @@ class LogisticsApplication : Application(), KodeinAware, ViewModelStoreOwner {
         bind() from singleton { AuthRepository(instance()) }
         bind<ITripsRepository>() with singleton { TripsRepository(instance()) }
 
+        //View models factories
         bind() from provider { LoginViewModelFactory(instance()) }
-
         bind() from provider { MainViewModelFactory(instance(), instance()) }
+        bind() from provider { BarCodeViewModelFactory(instance()) }
 
 
     }
