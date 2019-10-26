@@ -67,4 +67,8 @@ class UnloadingFragment : Fragment(), ZXingScannerView.ResultHandler {
         mFlash = !mFlash
         mScannerView.flash = mFlash
     }
+
+    companion object {
+        fun newInstance() = UnloadingFragment()
+    }
 }
