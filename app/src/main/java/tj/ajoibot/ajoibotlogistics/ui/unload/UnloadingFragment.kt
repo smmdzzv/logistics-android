@@ -5,7 +5,6 @@ import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.Window
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.zxing.Result
@@ -25,14 +24,14 @@ class UnloadingFragment : Fragment(), ZXingScannerView.ResultHandler {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_unloading, container, false)
-        return root
+        return inflater.inflate(R.layout.fragment_unloading, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mScannerView = ZXingScannerView(activity)
         scanner_content_frame.addView(mScannerView)
+        scanner_flash_btn.setOnClickListener { toggleFlash() }
     }
 
     override fun onResume() {
@@ -41,6 +40,17 @@ class UnloadingFragment : Fragment(), ZXingScannerView.ResultHandler {
         mScannerView.setResultHandler(this)
         mScannerView.startCamera()
         mScannerView.flash = mFlash
+    }
+
+    override fun onPause() {
+        super.onPause()
+        mScannerView.stopCamera()
+    }
+
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putBoolean(FLASH_STATE, mFlash)
     }
 
     override fun handleResult(rawResult: Result?) {
@@ -53,8 +63,8 @@ class UnloadingFragment : Fragment(), ZXingScannerView.ResultHandler {
         handler.postDelayed({ mScannerView.resumeCameraPreview(this) }, 2000)
     }
 
-    override fun onPause() {
-        super.onPause()
-        mScannerView.stopCamera()
+    private fun toggleFlash() {
+        mFlash = !mFlash
+        mScannerView.flash = mFlash
     }
 }
