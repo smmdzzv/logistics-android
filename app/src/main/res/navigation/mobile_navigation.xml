@@ -24,7 +24,11 @@
     <fragment
         android:id="@+id/navigation_trip_details"
         android:name="tj.ajoibot.logistics.ui.trips.TripDetailsFragment"
-        android:layout="@layout/fragment_trip_details" />
+        android:layout="@layout/fragment_trip_details" >
+        <action
+            android:id="@+id/navigate_to_unloadCarFragment"
+            app:destination="@id/unloadCarFragment" />
+    </fragment>
     <fragment
         android:id="@+id/unloadCarFragment"
         android:name="tj.ajoibot.logistics.ui.trips.UnloadCarFragment"
