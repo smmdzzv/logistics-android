@@ -6,6 +6,7 @@ import android.view.Window
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -23,7 +24,7 @@ class MainActivity : AppCompatActivity(), KodeinAware {
 
     private val mainViewModelFactory: MainViewModelFactory by instance()
 
-    private lateinit var vm: MainViewModel
+    lateinit var vm: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,13 +45,12 @@ class MainActivity : AppCompatActivity(), KodeinAware {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        vm =
-            ViewModelProvider(this.application as LogisticsApplication, mainViewModelFactory)
-                .get(MainViewModel::class.java)
+        vm = ViewModelProvider(this, mainViewModelFactory)
+            .get(MainViewModel::class.java)
 
     }
 
-    fun onUserLogout(){
+    fun onUserLogout() {
         launchLoginActivity()
         finish()
     }

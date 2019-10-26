@@ -13,8 +13,10 @@ import org.kodein.di.generic.singleton
 import tj.ajoibot.ajoibotlogistics.data.network.RemoteDataSource
 import tj.ajoibot.ajoibotlogistics.data.network.interceptors.RequestTokenInterceptor
 import tj.ajoibot.ajoibotlogistics.data.repositories.AuthRepository
+import tj.ajoibot.ajoibotlogistics.data.repositories.TripsRepository
 import tj.ajoibot.ajoibotlogistics.internal.interfaces.IRemoteDataSource
 import tj.ajoibot.ajoibotlogistics.internal.interfaces.IRequestTokenInterceptor
+import tj.ajoibot.ajoibotlogistics.internal.interfaces.ITripsRepository
 import tj.ajoibot.ajoibotlogistics.internal.utils.SharedSettings
 import tj.ajoibot.ajoibotlogistics.services.LogisticsService
 import tj.ajoibot.ajoibotlogistics.ui.login.LoginViewModelFactory
@@ -39,13 +41,16 @@ class LogisticsApplication : Application(), KodeinAware, ViewModelStoreOwner {
 
         bind() from singleton { LogisticsService(instance()) }
 
+        //Data Sources
         bind<IRemoteDataSource>() with singleton { RemoteDataSource(instance()) }
 
+        //Repositories
         bind() from singleton { AuthRepository(instance()) }
+        bind<ITripsRepository>() with singleton { TripsRepository(instance()) }
 
         bind() from provider { LoginViewModelFactory(instance()) }
 
-        bind() from provider { MainViewModelFactory(instance()) }
+        bind() from provider { MainViewModelFactory(instance(), instance()) }
 
 
     }
