@@ -5,4 +5,7 @@
 
     <!--Permission Codes-->
     <integer name="internet_permission_code">101</integer>
+    <integer name="storage_permission_code">102</integer>
+    <integer name="read_phone_state_permission_code">103</integer>
+    <integer name="camera_permission_code">104</integer>
 </resources>
