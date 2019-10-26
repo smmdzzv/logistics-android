@@ -5,10 +5,13 @@ import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.zxing.Result
+import kotlinx.android.synthetic.main.fragment_unloading.*
 import me.dm7.barcodescanner.zxing.ZXingScannerView
+import tj.ajoibot.ajoibotlogistics.R
 
 class UnloadingFragment : Fragment(), ZXingScannerView.ResultHandler {
 
@@ -22,14 +25,22 @@ class UnloadingFragment : Fragment(), ZXingScannerView.ResultHandler {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val root = inflater.inflate(R.layout.fragment_unloading, container, false)
+        return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         mScannerView = ZXingScannerView(activity)
-        return mScannerView
+        scanner_content_frame.addView(mScannerView)
     }
 
     override fun onResume() {
         super.onResume()
+        mScannerView.setAspectTolerance(0.2f)
         mScannerView.setResultHandler(this)
         mScannerView.startCamera()
+        mScannerView.flash = mFlash
     }
 
     override fun handleResult(rawResult: Result?) {
