@@ -8,7 +8,7 @@ import kotlinx.android.synthetic.main.fragment_unload_car.*
 import tj.ajoibot.logistics.MainActivity
 import tj.ajoibot.logistics.R
 import tj.ajoibot.logistics.internal.extensions.addFragment
-import tj.ajoibot.logistics.ui.unload.UnloadingFragment
+import tj.ajoibot.logistics.ui.barcode.BarcodeScannerFragment
 
 class UnloadCarFragment : BaseTripFragment() {
 
@@ -22,7 +22,7 @@ class UnloadCarFragment : BaseTripFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val fragment = UnloadingFragment()
+        val fragment = BarcodeScannerFragment()
         (activity as MainActivity).addFragment(fragment, unload_car_frame.id)
     }
 }

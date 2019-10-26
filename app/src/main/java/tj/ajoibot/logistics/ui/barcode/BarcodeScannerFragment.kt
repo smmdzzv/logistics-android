@@ -1,4 +1,4 @@
-package tj.ajoibot.logistics.ui.unload
+package tj.ajoibot.logistics.ui.barcode
 
 import android.os.Bundle
 import android.os.Handler
@@ -8,11 +8,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.zxing.Result
-import kotlinx.android.synthetic.main.fragment_unloading.*
+import kotlinx.android.synthetic.main.fragment_barcode_scanner.*
 import me.dm7.barcodescanner.zxing.ZXingScannerView
 import tj.ajoibot.logistics.R
 
-class UnloadingFragment : Fragment(), ZXingScannerView.ResultHandler {
+class BarcodeScannerFragment : Fragment(), ZXingScannerView.ResultHandler {
 
     private val FLASH_STATE = "FLASH_STATE"
 
@@ -24,7 +24,7 @@ class UnloadingFragment : Fragment(), ZXingScannerView.ResultHandler {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_unloading, container, false)
+        return inflater.inflate(R.layout.fragment_barcode_scanner, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -69,6 +69,6 @@ class UnloadingFragment : Fragment(), ZXingScannerView.ResultHandler {
     }
 
     companion object {
-        fun newInstance() = UnloadingFragment()
+        fun newInstance() = BarcodeScannerFragment()
     }
 }
