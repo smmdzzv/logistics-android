@@ -51,5 +51,13 @@ class UnloadCarFragment : BaseTripFragment() {
             if (itemId !== null && decoded !== null)
                 barcodeVm.unloadItem(itemId, decoded)
         })
+
+        barcodeVm.sendingRequest.observe(viewLifecycleOwner, Observer { busy ->
+            unload_car_progress_bar.visibility = if (busy) View.VISIBLE else View.GONE
+        })
+
+        barcodeVm.statusMessage.observe(viewLifecycleOwner, Observer { status ->
+            unload_car_status_tv.text = status
+        })
     }
 }

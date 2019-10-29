@@ -32,6 +32,6 @@
     <fragment
         android:id="@+id/unloadCarFragment"
         android:name="tj.ajoibot.logistics.ui.trips.UnloadCarFragment"
-        android:label="fragment_unload_car"
+        android:label="Разгрузка машины"
         tools:layout="@layout/fragment_unload_car" />
 </navigation>

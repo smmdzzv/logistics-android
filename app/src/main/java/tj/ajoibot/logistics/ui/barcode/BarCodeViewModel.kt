@@ -20,6 +20,10 @@ class BarCodeViewModel(private val repo: ITripsRepository) : ViewModel() {
     val sendingRequest: LiveData<Boolean>
         get() = _sendingRequest
 
+    private val _statusMessage = MutableLiveData<String>()
+    val statusMessage: LiveData<String>
+        get() = _statusMessage
+
     /**
      *Sets decoded bar code to _decodedBarCode
      */
@@ -32,12 +36,15 @@ class BarCodeViewModel(private val repo: ITripsRepository) : ViewModel() {
     fun unloadItem(tripId: String, itemCode: String) {
         CoroutineScope(Dispatchers.IO).launch {
             Log.d("unloading", "Sending unload request $tripId and $itemCode")
+            _statusMessage.postValue("Идет отправка данных на сервер...")
             _sendingRequest.postValue(true)
             try {
                 val response = repo.unloadItem(tripId, itemCode)
                 Log.d("unloading", "Item unloaded $response")
+                _statusMessage.postValue("Товар успешно принят")
             } catch (e: Exception) {
                 Log.d("unloading", "Failed to unload item $e")
+                _statusMessage.postValue("Неудалось принять товар. Попробуйте еще раз")
             }
             _sendingRequest.postValue(false)
             Log.d("unloading", "Request for unload sent $tripId and $itemCode")
