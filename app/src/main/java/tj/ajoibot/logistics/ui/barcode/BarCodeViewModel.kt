@@ -20,6 +20,7 @@ class BarCodeViewModel(private val repo: ITripsRepository) : ViewModel() {
     val sendingRequest: LiveData<Boolean>
         get() = _sendingRequest
 
+    //TODO remove from here
     private val _statusMessage = MutableLiveData<String>()
     val statusMessage: LiveData<String>
         get() = _statusMessage

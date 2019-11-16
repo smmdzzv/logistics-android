@@ -1,7 +1,6 @@
 package tj.ajoibot.logistics.services
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import kotlinx.coroutines.CompletableJob
 import okhttp3.OkHttpClient
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -11,6 +10,8 @@ import tj.ajoibot.logistics.data.models.request.Credentials
 import tj.ajoibot.logistics.data.models.response.ActiveTrip
 import tj.ajoibot.logistics.data.models.response.AuthenticationResponse
 import tj.ajoibot.logistics.data.models.response.AuthorizedUserResponse
+import tj.ajoibot.logistics.data.models.response.StoredItem
+import tj.ajoibot.logistics.internal.BASE_URL_API
 import tj.ajoibot.logistics.internal.interfaces.IRequestTokenInterceptor
 
 interface LogisticsService {
@@ -24,11 +25,16 @@ interface LogisticsService {
     @GET("trips")
     suspend fun getActiveTrips(): Response<List<ActiveTrip>>
 
-    @POST("trip/{trip}/unload")
+    @POST("trip/{id}/unload")
     suspend fun unloadItem(
-        @Path("trip") tripId: String,
+        @Path("id") tripId: String,
         @Query("stored_item") itemCode: String
     )
+
+    @GET("stored-item")
+    suspend fun getStoredItem(
+        @Query("code") code: String
+    ): Response<StoredItem>
 
     companion object {
         operator fun invoke(tokenInterceptor: IRequestTokenInterceptor): LogisticsService {
@@ -40,7 +46,7 @@ interface LogisticsService {
             val retrofit = Retrofit.Builder()
                 .addConverterFactory(MoshiConverterFactory.create())
                 .addCallAdapterFactory(CoroutineCallAdapterFactory())
-                .baseUrl("http://duob.ajoibot.tj/api/")
+                .baseUrl(BASE_URL_API)
                 .client(client)
                 .build()
 

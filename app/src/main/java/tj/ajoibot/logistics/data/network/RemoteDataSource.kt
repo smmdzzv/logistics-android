@@ -24,8 +24,8 @@ class RemoteDataSource(private val api: LogisticsService) : IRemoteDataSource, B
         return getResult { api.getActiveTrips() }
     }
 
-    override suspend fun getStoredItem(id: String): Result<StoredItem> {
-        return getResult { api.getStoredItem(id) }
+    override suspend fun getStoredItem(code: String): Result<StoredItem> {
+        return getResult { api.getStoredItem(code) }
     }
 
     override suspend fun unloadItem(tripId: String, itemCode: String) {

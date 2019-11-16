@@ -4,5 +4,5 @@ import tj.ajoibot.logistics.data.models.Result
 import tj.ajoibot.logistics.data.models.response.StoredItem
 
 interface IStoredItemsRepository {
-    suspend fun getStoredItem(id: String): Result<StoredItem>
+    suspend fun getStoredItem(code: String): Result<StoredItem>
 }

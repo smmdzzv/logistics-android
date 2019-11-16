@@ -6,7 +6,7 @@ import tj.ajoibot.logistics.internal.interfaces.IRemoteDataSource
 import tj.ajoibot.logistics.internal.interfaces.IStoredItemsRepository
 
 class StoredItemsRepository(private val remoteDataSource: IRemoteDataSource) : IStoredItemsRepository {
-    override suspend fun getStoredItem(id: String): Result<StoredItem> {
-        return remoteDataSource.getStoredItem(id)
+    override suspend fun getStoredItem(code: String): Result<StoredItem> {
+        return remoteDataSource.getStoredItem(code)
     }
 }
