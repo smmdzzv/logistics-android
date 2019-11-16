@@ -33,7 +33,7 @@ class TripsRecyclerViewAdapter(
         dataBinding.handler = ActiveTripClickHandler(fragment, item, vm)
     }
 
-    public fun setData(newData: List<ActiveTrip>){
+    fun setData(newData: List<ActiveTrip>){
         activeTrips = newData
         notifyDataSetChanged()
     }

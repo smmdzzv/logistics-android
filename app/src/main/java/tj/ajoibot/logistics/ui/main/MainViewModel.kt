@@ -37,7 +37,7 @@ class MainViewModel(
      *Return authorized user
      */
     fun getAuthorizedUser() {
-        if (_userResponse.value == null)
+        if (_userResponse.value == null || _userResponse.value!!.status != Result.Status.SUCCESS)
             CoroutineScope(Dispatchers.IO).launch {
                 val response = authRepo.getAuthorizedUser()
                 _userResponse.postValue(response)

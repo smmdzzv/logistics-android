@@ -14,4 +14,7 @@
     <string name="title_profile">Профиль</string>
     <string name="title_logout_btn">Выйти</string>
     <string name="title_flash_btn">Подсветка</string>
+    <string name="trip_details_load_btn_title">Загрузить в машину</string>
+    <string name="trip_details_unload_btn_title">Разгрузить машину</string>
+    <string name="trip_details_transfer_btn_title">Трансфер товаров</string>
 </resources>

@@ -58,11 +58,11 @@ class ProfileFragment : Fragment(), KodeinAware {
         vm.getAuthorizedUser()
     }
 
-    private fun setListeners(){
+    private fun setListeners() {
         profile_logout_btn.setOnClickListener { logout() }
     }
 
-    private fun logout(){
+    private fun logout() {
         settings.saveToken("")
         (this.activity as MainActivity).onUserLogout()
     }

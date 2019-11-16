@@ -1,5 +1,6 @@
 package tj.ajoibot.logistics.ui.trips
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,15 +19,14 @@ class TripDetailsFragment : BaseTripFragment() {
     ): View? {
 
         val root = inflater.inflate(R.layout.fragment_trip_details, container, false)
-        val textView: TextView = root.findViewById(R.id.text_notifications)
-        textView.text = vm.selectedTrip?.id
 
         return root
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        trip_details_code_tv.text = "Рейс: ${vm.selectedTrip?.code}"
         setListeners()
     }
 
