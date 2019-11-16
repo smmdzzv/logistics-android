@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 open class BaseViewModel : ViewModel() {
-    private val _sendingRequest = MutableLiveData<Boolean>()
+    protected val mSendingRequest = MutableLiveData<Boolean>()
     val sendingRequest: LiveData<Boolean>
-        get() = _sendingRequest
+        get() = mSendingRequest
 }

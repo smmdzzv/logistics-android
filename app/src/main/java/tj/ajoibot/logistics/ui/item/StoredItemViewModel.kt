@@ -21,10 +21,13 @@ class StoredItemViewModel(
 
 
     fun getStoredItem(code: String) {
+        if (sendingRequest.value != null && sendingRequest.value == true)
+            return
         CoroutineScope(Dispatchers.IO).launch {
+            mSendingRequest.postValue(true)
             val response = storedItemsRepo.getStoredItem(code)
             _storedItemResponse.postValue(response)
-
+            mSendingRequest.postValue(false)
             Log.d("stored-item", "Get stored item by code $code response is $response")
         }
     }

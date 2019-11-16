@@ -72,9 +72,6 @@ class NavigationItemInfoFragment : Fragment(), KodeinAware {
                         "Владелец:${data.info.owner.code} ${data.info.owner.name}\n" +
                         "${BASE_URL}stored/${data.id}"
             }
-
-
-
         })
 
         barcodeVm.sendingRequest.observe(viewLifecycleOwner, Observer { busy ->
