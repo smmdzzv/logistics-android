@@ -24,8 +24,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/item_info_progress_bar"
             app:layout_constraintTop_toTopOf="parent"
-            app:lineHeight="24sp"
-            tools:text="Какой-то пробный текст для оценки возможностей этого шрифта и прочих опций" />
+            app:lineHeight="24sp" />
 
         <FrameLayout
             android:id="@+id/item_info_frame"

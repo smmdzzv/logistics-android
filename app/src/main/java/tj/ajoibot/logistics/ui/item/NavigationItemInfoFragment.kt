@@ -74,7 +74,7 @@ class NavigationItemInfoFragment : Fragment(), KodeinAware {
             }
         })
 
-        barcodeVm.sendingRequest.observe(viewLifecycleOwner, Observer { busy ->
+        storedItemsVm.sendingRequest.observe(viewLifecycleOwner, Observer { busy ->
             item_info_progress_bar.visibility = if (busy) View.VISIBLE else View.GONE
         })
 
