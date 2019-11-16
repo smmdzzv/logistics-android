@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_trip_details.*
 import tj.ajoibot.logistics.R
@@ -18,9 +17,7 @@ class TripDetailsFragment : BaseTripFragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val root = inflater.inflate(R.layout.fragment_trip_details, container, false)
-
-        return root
+        return inflater.inflate(R.layout.fragment_trip_details, container, false)
     }
 
     @SuppressLint("SetTextI18n")
@@ -30,9 +27,20 @@ class TripDetailsFragment : BaseTripFragment() {
         setListeners()
     }
 
-    private fun setListeners(){
+    private fun setListeners() {
+
+        trip_details_load_btn.setOnClickListener {
+            val action = TripDetailsFragmentDirections.navigateToLoadCarFragment()
+            findNavController().navigate(action)
+        }
+
         trip_details_unload_btn.setOnClickListener {
             val action = TripDetailsFragmentDirections.navigateToUnloadCarFragment()
+            findNavController().navigate(action)
+        }
+
+        trip_details_transfer_btn.setOnClickListener {
+            val action = TripDetailsFragmentDirections.navigateToTransferItemsFragment()
             findNavController().navigate(action)
         }
     }

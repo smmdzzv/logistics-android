@@ -1,7 +1,6 @@
 package tj.ajoibot.logistics.data.network
 
 
-import kotlinx.coroutines.CompletableJob
 import tj.ajoibot.logistics.data.models.request.Credentials
 import tj.ajoibot.logistics.data.models.response.AuthenticationResponse
 import tj.ajoibot.logistics.internal.base.BaseDataSource
@@ -10,6 +9,7 @@ import tj.ajoibot.logistics.services.LogisticsService
 import tj.ajoibot.logistics.data.models.Result
 import tj.ajoibot.logistics.data.models.response.ActiveTrip
 import tj.ajoibot.logistics.data.models.response.AuthorizedUserResponse
+import tj.ajoibot.logistics.data.models.response.StoredItem
 
 class RemoteDataSource(private val api: LogisticsService) : IRemoteDataSource, BaseDataSource() {
     override suspend fun getAuthorizedUser(): Result<AuthorizedUserResponse> {
@@ -21,7 +21,11 @@ class RemoteDataSource(private val api: LogisticsService) : IRemoteDataSource, B
     }
 
     override suspend fun getActiveTrips(): Result<List<ActiveTrip>> {
-        return getResult{ api.getActiveTrips()}
+        return getResult { api.getActiveTrips() }
+    }
+
+    override suspend fun getStoredItem(id: String): Result<StoredItem> {
+        return getResult { api.getStoredItem(id) }
     }
 
     override suspend fun unloadItem(tripId: String, itemCode: String) {

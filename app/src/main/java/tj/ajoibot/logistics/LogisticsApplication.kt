@@ -13,13 +13,16 @@ import org.kodein.di.generic.singleton
 import tj.ajoibot.logistics.data.network.RemoteDataSource
 import tj.ajoibot.logistics.data.network.interceptors.RequestTokenInterceptor
 import tj.ajoibot.logistics.data.repositories.AuthRepository
+import tj.ajoibot.logistics.data.repositories.StoredItemsRepository
 import tj.ajoibot.logistics.data.repositories.TripsRepository
 import tj.ajoibot.logistics.internal.interfaces.IRemoteDataSource
 import tj.ajoibot.logistics.internal.interfaces.IRequestTokenInterceptor
+import tj.ajoibot.logistics.internal.interfaces.IStoredItemsRepository
 import tj.ajoibot.logistics.internal.interfaces.ITripsRepository
 import tj.ajoibot.logistics.internal.utils.SharedSettings
 import tj.ajoibot.logistics.services.LogisticsService
 import tj.ajoibot.logistics.ui.barcode.BarCodeViewModelFactory
+import tj.ajoibot.logistics.ui.item.StoredItemViewModelFactory
 import tj.ajoibot.logistics.ui.login.LoginViewModelFactory
 import tj.ajoibot.logistics.ui.main.MainViewModelFactory
 
@@ -48,11 +51,13 @@ class LogisticsApplication : Application(), KodeinAware, ViewModelStoreOwner {
         //Repositories
         bind() from singleton { AuthRepository(instance()) }
         bind<ITripsRepository>() with singleton { TripsRepository(instance()) }
+        bind<IStoredItemsRepository>() with singleton { StoredItemsRepository(instance()) }
 
         //View models factories
         bind() from provider { LoginViewModelFactory(instance()) }
         bind() from provider { MainViewModelFactory(instance(), instance()) }
         bind() from provider { BarCodeViewModelFactory(instance()) }
+        bind() from provider { StoredItemViewModelFactory(instance()) }
 
 
     }

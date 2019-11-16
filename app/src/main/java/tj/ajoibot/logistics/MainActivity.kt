@@ -40,7 +40,8 @@ class MainActivity : AppCompatActivity(), KodeinAware, PermissionAskListener.Per
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.navigation_trips,
-                R.id.navigation_profile
+                R.id.navigation_profile,
+                R.id.navigation_itemInfo
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

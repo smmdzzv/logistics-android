@@ -5,7 +5,10 @@
         android:id="@+id/navigation_trips"
         android:icon="@drawable/ic_truck"
         android:title="@string/title_trips" />
-
+    <item
+        android:id="@+id/navigation_itemInfo"
+        android:icon="@drawable/ic_phone_bar_code"
+        android:title="Сканировать код" />
     <item
         android:id="@+id/navigation_profile"
         android:icon="@drawable/ic_profile"

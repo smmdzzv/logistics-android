@@ -6,6 +6,7 @@ import tj.ajoibot.logistics.data.models.request.Credentials
 import tj.ajoibot.logistics.data.models.response.ActiveTrip
 import tj.ajoibot.logistics.data.models.response.AuthenticationResponse
 import tj.ajoibot.logistics.data.models.response.AuthorizedUserResponse
+import tj.ajoibot.logistics.data.models.response.StoredItem
 
 interface IRemoteDataSource {
     suspend fun authorize(credentials: Credentials): Result<AuthenticationResponse>
@@ -15,4 +16,6 @@ interface IRemoteDataSource {
     suspend fun getActiveTrips(): Result<List<ActiveTrip>>
 
     suspend fun unloadItem(tripId: String, itemCode: String)
+
+    suspend fun getStoredItem(id: String): Result<StoredItem>
 }

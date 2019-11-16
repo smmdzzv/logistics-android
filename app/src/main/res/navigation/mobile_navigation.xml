@@ -22,16 +22,38 @@
         tools:layout="@layout/fragment_profile" />
 
     <fragment
+        android:id="@+id/navigation_itemInfo"
+        android:name="tj.ajoibot.logistics.ui.item.NavigationItemInfoFragment"
+        android:label="Сканирование"
+        tools:layout="@layout/fragment_navigation_item_info" />
+
+    <fragment
         android:id="@+id/navigation_trip_details"
         android:name="tj.ajoibot.logistics.ui.trips.TripDetailsFragment"
         android:layout="@layout/fragment_trip_details" >
         <action
             android:id="@+id/navigate_to_unloadCarFragment"
             app:destination="@id/unloadCarFragment" />
+        <action
+            android:id="@+id/navigate_to_loadCarFragment"
+            app:destination="@id/loadCarFragment" />
+        <action
+            android:id="@+id/navigate_to_transferItemsFragment"
+            app:destination="@id/transferItemsFragment" />
     </fragment>
     <fragment
         android:id="@+id/unloadCarFragment"
         android:name="tj.ajoibot.logistics.ui.trips.UnloadCarFragment"
         android:label="Разгрузка машины"
         tools:layout="@layout/fragment_unload_car" />
+    <fragment
+        android:id="@+id/loadCarFragment"
+        android:name="tj.ajoibot.logistics.ui.trips.LoadCarFragment"
+        android:label="fragment_load_car"
+        tools:layout="@layout/fragment_load_car" />
+    <fragment
+        android:id="@+id/transferItemsFragment"
+        android:name="tj.ajoibot.logistics.ui.trips.TransferItemsFragment"
+        android:label="fragment_transfer_items"
+        tools:layout="@layout/fragment_transfer_items" />
 </navigation>
