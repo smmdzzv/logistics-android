@@ -30,6 +30,7 @@
     <fragment
         android:id="@+id/navigation_trip_details"
         android:name="tj.ajoibot.logistics.ui.trips.TripDetailsFragment"
+        android:label="Операции с товарами рейса"
         android:layout="@layout/fragment_trip_details" >
         <action
             android:id="@+id/navigate_to_unloadCarFragment"
@@ -49,11 +50,11 @@
     <fragment
         android:id="@+id/loadCarFragment"
         android:name="tj.ajoibot.logistics.ui.trips.LoadCarFragment"
-        android:label="fragment_load_car"
+        android:label="Загрузка в машину"
         tools:layout="@layout/fragment_load_car" />
     <fragment
         android:id="@+id/transferItemsFragment"
         android:name="tj.ajoibot.logistics.ui.trips.TransferItemsFragment"
-        android:label="fragment_transfer_items"
+        android:label="Трансфер товаров"
         tools:layout="@layout/fragment_transfer_items" />
 </navigation>
