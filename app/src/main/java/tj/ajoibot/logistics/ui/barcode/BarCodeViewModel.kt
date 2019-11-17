@@ -20,6 +20,10 @@ class BarCodeViewModel(private val repo: ITripsRepository) : ViewModel() {
     val sendingRequest: LiveData<Boolean>
         get() = _sendingRequest
 
+    private val _scanningMode = MutableLiveData<Boolean>()
+    val scanningMode: LiveData<Boolean>
+        get() = _scanningMode
+
     //TODO remove from here
     private val _statusMessage = MutableLiveData<String>()
     val statusMessage: LiveData<String>
@@ -29,9 +33,16 @@ class BarCodeViewModel(private val repo: ITripsRepository) : ViewModel() {
      *Sets decoded bar code to _decodedBarCode
      */
     fun onBarcodeDecoded(result: String) {
-        val state = sendingRequest.value
-        if(state == null || !state)
+        val state = scanningMode
+        if (scanningMode.value == true)
             _decodedBarCode.postValue(result)
+//        val state = sendingRequest.value
+//        if (state == null || !state)
+//            _decodedBarCode.postValue(result)
+    }
+
+    fun setScanningMode(state: Boolean) {
+        _scanningMode.postValue(state)
     }
 
     fun unloadItem(tripId: String, itemCode: String) {

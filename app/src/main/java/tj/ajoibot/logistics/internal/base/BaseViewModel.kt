@@ -8,4 +8,8 @@ open class BaseViewModel : ViewModel() {
     protected val mSendingRequest = MutableLiveData<Boolean>()
     val sendingRequest: LiveData<Boolean>
         get() = mSendingRequest
+
+    protected val mStatusMessage = MutableLiveData<String>()
+    val statusMessage: LiveData<String>
+        get() = mStatusMessage
 }

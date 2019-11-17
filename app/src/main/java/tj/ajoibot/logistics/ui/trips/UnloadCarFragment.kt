@@ -20,20 +20,10 @@ import tj.ajoibot.logistics.ui.main.MainViewModelFactory
 
 class UnloadCarFragment : BaseTripFragment() {
 
-    private lateinit var barcodeVm: BarCodeViewModel
-
-    private val barCodeViewModelFactory: BarCodeViewModelFactory by instance()
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        barcodeVm = activity?.run {
-            ViewModelProvider(this, barCodeViewModelFactory)
-                .get(BarCodeViewModel::class.java)
-        } ?: throw Exception("Invalid Activity")
-
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_unload_car, container, false)
     }
 

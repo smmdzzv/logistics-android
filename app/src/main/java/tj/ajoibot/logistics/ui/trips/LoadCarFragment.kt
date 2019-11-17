@@ -17,27 +17,13 @@ import tj.ajoibot.logistics.ui.barcode.BarCodeViewModel
 import tj.ajoibot.logistics.ui.barcode.BarCodeViewModelFactory
 import tj.ajoibot.logistics.ui.barcode.BarcodeScannerFragment
 
-class LoadCarFragment :  BaseTripFragment() {
-    private lateinit var barcodeVm: BarCodeViewModel
-    private lateinit var tripsVm: TripsViewModel
+class LoadCarFragment : BaseTripFragment() {
 
-    private val barCodeViewModelFactory: BarCodeViewModelFactory by instance()
-    private val tripsViewModelFactory: TripsViewModelFactory by instance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        barcodeVm = activity?.run {
-            ViewModelProvider(this, barCodeViewModelFactory)
-                .get(BarCodeViewModel::class.java)
-        } ?: throw Exception("Invalid Activity")
-
-        tripsVm = activity?.run {
-            ViewModelProvider(this, tripsViewModelFactory)
-                .get(TripsViewModel::class.java)
-        } ?: throw Exception("Invalid Activity")
-
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_load_car, container, false)
     }
@@ -51,15 +37,22 @@ class LoadCarFragment :  BaseTripFragment() {
         setObservers()
     }
 
-    private fun setObservers(){
+    private fun setObservers() {
         barcodeVm.decodedBarCode.observe(viewLifecycleOwner, Observer { decoded ->
             load_status_tv.text = decoded
+            val itemId = vm.selectedTrip?.id
+            if (itemId !== null && decoded !== null)
+                tripsVm.loadItem(itemId, decoded)
         })
 
         tripsVm.sendingRequest.observe(viewLifecycleOwner, Observer { busy ->
+            barcodeVm.setScanningMode(!busy)
             load_progress_bar.visibility = if (busy) View.VISIBLE else View.GONE
         })
 
+        tripsVm.statusMessage.observe(viewLifecycleOwner, Observer { status ->
+            load_status_tv.text = status
+        })
     }
 
 }

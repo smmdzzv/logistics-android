@@ -39,6 +39,8 @@ class BarcodeScannerFragment : Fragment(), ZXingScannerView.ResultHandler, Kodei
                 .get(BarCodeViewModel::class.java)
         } ?: throw Exception("Invalid Activity")
 
+        vm.setScanningMode(true)
+
         return inflater.inflate(R.layout.fragment_barcode_scanner, container, false)
     }
 

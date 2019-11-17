@@ -25,6 +25,12 @@ interface LogisticsService {
     @GET("trips")
     suspend fun getActiveTrips(): Response<List<ActiveTrip>>
 
+    @POST("trip/{id}/load")
+    suspend fun loadItem(
+        @Path("id") tripId: String,
+        @Query("stored_item") itemCode: String
+    )
+
     @POST("trip/{id}/unload")
     suspend fun unloadItem(
         @Path("id") tripId: String,

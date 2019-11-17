@@ -15,6 +15,8 @@ interface IRemoteDataSource {
 
     suspend fun getActiveTrips(): Result<List<ActiveTrip>>
 
+    suspend fun loadItem(tripId: String, itemCode: String)
+
     suspend fun unloadItem(tripId: String, itemCode: String)
 
     suspend fun getStoredItem(code: String): Result<StoredItem>

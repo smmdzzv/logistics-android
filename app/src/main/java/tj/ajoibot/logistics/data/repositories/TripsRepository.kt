@@ -13,6 +13,10 @@ class TripsRepository(private val remote: IRemoteDataSource) : ITripsRepository 
         return remote.getActiveTrips()
     }
 
+    override suspend fun loadItem(tripId: String, itemCode: String) {
+        return remote.loadItem(tripId, itemCode)
+    }
+
     override suspend fun unloadItem(tripId: String, itemCode: String) {
         return remote.unloadItem(tripId, itemCode)
     }

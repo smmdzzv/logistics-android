@@ -28,6 +28,10 @@ class RemoteDataSource(private val api: LogisticsService) : IRemoteDataSource, B
         return getResult { api.getStoredItem(code) }
     }
 
+    override suspend fun loadItem(tripId: String, itemCode: String) {
+        return api.loadItem(tripId, itemCode)
+    }
+
     override suspend fun unloadItem(tripId: String, itemCode: String) {
         return api.unloadItem(tripId, itemCode)
     }
