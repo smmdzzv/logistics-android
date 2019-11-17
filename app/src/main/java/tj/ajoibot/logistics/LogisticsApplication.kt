@@ -25,6 +25,7 @@ import tj.ajoibot.logistics.ui.barcode.BarCodeViewModelFactory
 import tj.ajoibot.logistics.ui.item.StoredItemViewModelFactory
 import tj.ajoibot.logistics.ui.login.LoginViewModelFactory
 import tj.ajoibot.logistics.ui.main.MainViewModelFactory
+import tj.ajoibot.logistics.ui.trips.TripsViewModelFactory
 
 class LogisticsApplication : Application(), KodeinAware, ViewModelStoreOwner {
 
@@ -58,6 +59,7 @@ class LogisticsApplication : Application(), KodeinAware, ViewModelStoreOwner {
         bind() from provider { MainViewModelFactory(instance(), instance()) }
         bind() from provider { BarCodeViewModelFactory(instance()) }
         bind() from provider { StoredItemViewModelFactory(instance()) }
+        bind() from provider { TripsViewModelFactory(instance()) }
 
 
     }
