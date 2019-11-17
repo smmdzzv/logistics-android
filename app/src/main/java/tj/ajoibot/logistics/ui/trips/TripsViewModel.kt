@@ -57,4 +57,24 @@ class TripsViewModel(private val repo: ITripsRepository) : BaseViewModel() {
         }
     }
 
+    fun transferItem(tripId: String, targetTripId: String, itemCode: String) {
+        CoroutineScope(Dispatchers.IO).launch {
+            Log.d("transfer", "Sending transfer request $tripId and $itemCode")
+            mStatusMessage.postValue("Идет отправка данных на сервер...")
+            mSendingRequest.postValue(true)
+            try {
+                val response = repo.transferItem(tripId, targetTripId, itemCode)
+                Log.d("transfer", "Item transfer $response")
+                mStatusMessage.postValue("Товар успешно переведен на другой рейс")
+            } catch (e: Exception) {
+                Log.d("transfer", "Failed to transfer item $e")
+                mStatusMessage.postValue("Неудалось перевести товар на другой рейс. Попробуйте еще раз")
+            }
+            mSendingRequest.postValue(false)
+            Log.d(
+                "transfer",
+                "Request for transfer completed. Trip: $tripId, target trip: $targetTripId and item code: $itemCode"
+            )
+        }
+    }
 }

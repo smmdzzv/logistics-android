@@ -14,8 +14,6 @@ import tj.ajoibot.logistics.ui.barcode.BarcodeScannerFragment
 import android.widget.ArrayAdapter
 
 
-
-
 class TransferItemsFragment : BaseTripFragment(), AdapterView.OnItemSelectedListener {
 
     override fun onCreateView(
@@ -30,9 +28,10 @@ class TransferItemsFragment : BaseTripFragment(), AdapterView.OnItemSelectedList
         val fragment = BarcodeScannerFragment()
         (activity as MainActivity).addFragment(fragment, transfer_frame.id)
 
-        val activeTrips = vm.activeTrips.value?.data?.map { it.code }
+        var activeTrips = vm.activeTrips.value?.data?.map { it.code }
 
         if (activeTrips != null) {
+            activeTrips = activeTrips.filter { it != vm.selectedTrip?.code }
             val adapter = ArrayAdapter(
                 this.context!!,
                 android.R.layout.simple_spinner_item,
@@ -53,28 +52,29 @@ class TransferItemsFragment : BaseTripFragment(), AdapterView.OnItemSelectedList
     private fun setObservers() {
         barcodeVm.decodedBarCode.observe(viewLifecycleOwner, Observer { decoded ->
             val itemId = vm.selectedTrip?.id
-            if (itemId !== null && decoded !== null)
-                tripsVm.unloadItem(itemId, decoded)
+            val targetItemId = tripsVm.targetTrip.value?.id
+            if (itemId !== null && decoded !== null && targetItemId !== null)
+                tripsVm.transferItem(itemId, targetItemId, decoded)
         })
 
-        barcodeVm.sendingRequest.observe(viewLifecycleOwner, Observer { busy ->
+        tripsVm.sendingRequest.observe(viewLifecycleOwner, Observer { busy ->
             transfer_progress_bar.visibility = if (busy) View.VISIBLE else View.GONE
         })
 
-        barcodeVm.statusMessage.observe(viewLifecycleOwner, Observer { status ->
+        tripsVm.statusMessage.observe(viewLifecycleOwner, Observer { status ->
             transfer_status_tv.text = status
         })
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         val trips = vm.activeTrips.value?.data
         val selected = parent?.getItemAtPosition(position) as String
-        if(trips != null && selected.isNotBlank()){
-            val trip = trips.firstOrNull{
+        if (trips != null && selected.isNotBlank()) {
+            val trip = trips.firstOrNull {
                 it.code == selected
             }
             tripsVm.setTargetTrip(trip)

@@ -37,6 +37,13 @@ interface LogisticsService {
         @Query("stored_item") itemCode: String
     )
 
+    @POST("trip/{id}/transfer/{targetTrip}")
+    suspend fun transferItem(
+        @Path("id") tripId: String,
+        @Path("targetTrip") targetTripId: String,
+        @Query("stored_item") itemCode: String
+    )
+
     @GET("stored-item")
     suspend fun getStoredItem(
         @Query("code") code: String
