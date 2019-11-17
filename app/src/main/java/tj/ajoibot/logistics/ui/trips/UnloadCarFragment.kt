@@ -4,19 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.fragment_unload_car.*
-import org.kodein.di.generic.instance
 import tj.ajoibot.logistics.MainActivity
 import tj.ajoibot.logistics.R
 import tj.ajoibot.logistics.internal.extensions.addFragment
-import tj.ajoibot.logistics.ui.barcode.BarCodeViewModel
-import tj.ajoibot.logistics.ui.barcode.BarCodeViewModelFactory
 import tj.ajoibot.logistics.ui.barcode.BarcodeScannerFragment
-import tj.ajoibot.logistics.ui.main.MainViewModelFactory
 
 class UnloadCarFragment : BaseTripFragment() {
 
@@ -39,7 +32,7 @@ class UnloadCarFragment : BaseTripFragment() {
         barcodeVm.decodedBarCode.observe(viewLifecycleOwner, Observer { decoded ->
             val itemId = vm.selectedTrip?.id
             if (itemId !== null && decoded !== null)
-                barcodeVm.unloadItem(itemId, decoded)
+                tripsVm.unloadItem(itemId, decoded)
         })
 
         barcodeVm.sendingRequest.observe(viewLifecycleOwner, Observer { busy ->

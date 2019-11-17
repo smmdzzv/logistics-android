@@ -57,7 +57,7 @@ class LogisticsApplication : Application(), KodeinAware, ViewModelStoreOwner {
         //View models factories
         bind() from provider { LoginViewModelFactory(instance()) }
         bind() from provider { MainViewModelFactory(instance(), instance()) }
-        bind() from provider { BarCodeViewModelFactory(instance()) }
+        bind() from provider { BarCodeViewModelFactory() }
         bind() from provider { StoredItemViewModelFactory(instance()) }
         bind() from provider { TripsViewModelFactory(instance()) }
 
