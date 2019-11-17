@@ -53,7 +53,7 @@ class TripsFragment : Fragment(), KodeinAware {
         )
         trips_rv.addItemDecoration(divider)
 
-        vm.activeTrip.observe(viewLifecycleOwner, Observer { trips ->
+        vm.activeTrips.observe(viewLifecycleOwner, Observer { trips ->
             Log.d("trips", "Have trips in fragment $$trips")
             if (trips.data != null)
                 adapter.setData(trips.data)

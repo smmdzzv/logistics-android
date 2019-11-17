@@ -1,14 +1,25 @@
 package tj.ajoibot.logistics.ui.trips
 
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import tj.ajoibot.logistics.data.models.response.ActiveTrip
 import tj.ajoibot.logistics.internal.base.BaseViewModel
 import tj.ajoibot.logistics.internal.interfaces.ITripsRepository
 import java.lang.Exception
 
 class TripsViewModel(private val repo: ITripsRepository) : BaseViewModel() {
+
+    private val _targetTrip = MutableLiveData<ActiveTrip>()
+    val targetTrip: LiveData<ActiveTrip>
+        get() = _targetTrip
+
+    fun setTargetTrip(trip: ActiveTrip?) {
+        _targetTrip.postValue(trip)
+    }
 
     fun loadItem(tripId: String, itemCode: String) {
         CoroutineScope(Dispatchers.IO).launch {

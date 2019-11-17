@@ -23,7 +23,7 @@ class MainViewModel(
         get() = _userResponse
 
     private val _activeTripsResponse = MutableLiveData<Result<List<ActiveTrip>>>()
-    val activeTrip: LiveData<Result<List<ActiveTrip>>>
+    val activeTrips: LiveData<Result<List<ActiveTrip>>>
         get() = _activeTripsResponse
 
     private var _selectedTrip: ActiveTrip? = null
