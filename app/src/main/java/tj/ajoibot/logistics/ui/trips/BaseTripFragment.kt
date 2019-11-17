@@ -39,5 +39,7 @@ open class BaseTripFragment : Fragment(), KodeinAware {
             ViewModelProvider(this, tripsViewModelFactory)
                 .get(TripsViewModel::class.java)
         } ?: throw Exception("Invalid Activity")
+
+        tripsVm.setStatusMessage("")
     }
 }

@@ -12,4 +12,8 @@ open class BaseViewModel : ViewModel() {
     protected val mStatusMessage = MutableLiveData<String>()
     val statusMessage: LiveData<String>
         get() = mStatusMessage
+
+    fun setStatusMessage(message: String){
+        mStatusMessage.postValue(message)
+    }
 }
