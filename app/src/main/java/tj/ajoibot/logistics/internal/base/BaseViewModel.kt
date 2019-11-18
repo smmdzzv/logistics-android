@@ -13,7 +13,11 @@ open class BaseViewModel : ViewModel() {
     val statusMessage: LiveData<String>
         get() = mStatusMessage
 
-    fun setStatusMessage(message: String){
+//    protected val mRequestSucceeded = MutableLiveData<Boolean>()
+//    val requestSucceeded: LiveData<Boolean>
+//        get() = mRequestSucceeded
+
+    fun setStatusMessage(message: String) {
         mStatusMessage.postValue(message)
     }
 }

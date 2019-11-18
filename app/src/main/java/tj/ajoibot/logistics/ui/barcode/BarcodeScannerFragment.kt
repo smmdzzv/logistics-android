@@ -60,8 +60,8 @@ class BarcodeScannerFragment : Fragment(), ZXingScannerView.ResultHandler, Kodei
     }
 
     override fun onPause() {
-        super.onPause()
         mScannerView.stopCamera()
+        super.onPause()
     }
 
 

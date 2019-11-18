@@ -29,17 +29,19 @@ class UnloadCarFragment : BaseTripFragment() {
     }
 
     private fun setObservers() {
-        barcodeVm.decodedBarCode.observe(viewLifecycleOwner, Observer { decoded ->
-            val itemId = vm.selectedTrip?.id
-            if (itemId !== null && decoded !== null)
-                tripsVm.unloadItem(itemId, decoded)
+        barcodeVm.decodedBarCode.observe(viewLifecycleOwner, Observer {
+            it.getContentIfNotHandled()?.let { decoded ->
+                val itemId = vm.selectedTrip?.id
+                if (itemId !== null)
+                    tripsVm.unloadItem(itemId, decoded)
+            }
         })
 
-        barcodeVm.sendingRequest.observe(viewLifecycleOwner, Observer { busy ->
+        tripsVm.sendingRequest.observe(viewLifecycleOwner, Observer { busy ->
             unload_car_progress_bar.visibility = if (busy) View.VISIBLE else View.GONE
         })
 
-        barcodeVm.statusMessage.observe(viewLifecycleOwner, Observer { status ->
+        tripsVm.statusMessage.observe(viewLifecycleOwner, Observer { status ->
             unload_car_status_tv.text = status
         })
     }

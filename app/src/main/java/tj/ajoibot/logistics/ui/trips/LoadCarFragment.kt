@@ -38,11 +38,13 @@ class LoadCarFragment : BaseTripFragment() {
     }
 
     private fun setObservers() {
-        barcodeVm.decodedBarCode.observe(viewLifecycleOwner, Observer { decoded ->
-            load_status_tv.text = decoded
-            val itemId = vm.selectedTrip?.id
-            if (itemId !== null && decoded !== null)
-                tripsVm.loadItem(itemId, decoded)
+        barcodeVm.decodedBarCode.observe(viewLifecycleOwner, Observer {
+            it.getContentIfNotHandled()?.let { decoded ->
+                load_status_tv.text = decoded
+                val itemId = vm.selectedTrip?.id
+                if (itemId !== null)
+                    tripsVm.loadItem(itemId, decoded)
+            }
         })
 
         tripsVm.sendingRequest.observe(viewLifecycleOwner, Observer { busy ->

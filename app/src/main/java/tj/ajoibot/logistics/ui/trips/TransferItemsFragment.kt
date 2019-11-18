@@ -12,6 +12,7 @@ import tj.ajoibot.logistics.R
 import tj.ajoibot.logistics.internal.extensions.addFragment
 import tj.ajoibot.logistics.ui.barcode.BarcodeScannerFragment
 import android.widget.ArrayAdapter
+import kotlinx.android.synthetic.main.fragment_load_car.*
 
 
 class TransferItemsFragment : BaseTripFragment(), AdapterView.OnItemSelectedListener {
@@ -50,11 +51,13 @@ class TransferItemsFragment : BaseTripFragment(), AdapterView.OnItemSelectedList
     }
 
     private fun setObservers() {
-        barcodeVm.decodedBarCode.observe(viewLifecycleOwner, Observer { decoded ->
-            val itemId = vm.selectedTrip?.id
-            val targetItemId = tripsVm.targetTrip.value?.id
-            if (itemId !== null && decoded !== null && targetItemId !== null)
-                tripsVm.transferItem(itemId, targetItemId, decoded)
+        barcodeVm.decodedBarCode.observe(viewLifecycleOwner, Observer {
+            it.getContentIfNotHandled()?.let { decoded ->
+                val itemId = vm.selectedTrip?.id
+                val targetItemId = tripsVm.targetTrip.value?.id
+                if (itemId !== null && targetItemId !== null)
+                    tripsVm.transferItem(itemId, targetItemId, decoded)
+            }
         })
 
         tripsVm.sendingRequest.observe(viewLifecycleOwner, Observer { busy ->

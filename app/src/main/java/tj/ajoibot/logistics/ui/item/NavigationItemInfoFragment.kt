@@ -61,10 +61,19 @@ class NavigationItemInfoFragment : Fragment(), KodeinAware {
 
     @SuppressLint("SetTextI18n")
     private fun setObservers() {
-        barcodeVm.decodedBarCode.observe(viewLifecycleOwner, Observer { decoded ->
-            storedItemsVm.getStoredItem(decoded)
-            val data = storedItemsVm.storedItemResponse.value?.data
-            if (data !== null){
+        barcodeVm.decodedBarCode.observe(viewLifecycleOwner, Observer {
+            it.getContentIfNotHandled()?.let { decoded ->
+                storedItemsVm.getStoredItem(decoded)
+            }
+        })
+
+        storedItemsVm.sendingRequest.observe(viewLifecycleOwner, Observer { busy ->
+            item_info_progress_bar.visibility = if (busy) View.VISIBLE else View.GONE
+        })
+
+        storedItemsVm.storedItemResponse.observe(viewLifecycleOwner, Observer {
+            val data = it.data
+            if (data !== null) {
                 val volume = data.info.width * data.info.height * data.info.length
                 item_info_status_tv.text = "Код: ${data.code}\n" +
                         "Объем: $volume | Вес: ${data.info.weight} " +
@@ -72,10 +81,6 @@ class NavigationItemInfoFragment : Fragment(), KodeinAware {
                         "Владелец:${data.info.owner.code} ${data.info.owner.name}\n" +
                         "${BASE_URL}stored/${data.id}"
             }
-        })
-
-        storedItemsVm.sendingRequest.observe(viewLifecycleOwner, Observer { busy ->
-            item_info_progress_bar.visibility = if (busy) View.VISIBLE else View.GONE
         })
 
     }
