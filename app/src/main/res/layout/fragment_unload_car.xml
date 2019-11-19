@@ -18,10 +18,8 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="58dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="61dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/unload_car_frame"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/unload_car_progress_bar"
             app:layout_constraintTop_toTopOf="parent" />
@@ -30,11 +28,11 @@
             android:id="@+id/unload_car_frame"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/unload_car_status_tv">
 
         </FrameLayout>
 
