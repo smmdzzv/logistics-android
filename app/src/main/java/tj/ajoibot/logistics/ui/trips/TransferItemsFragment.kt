@@ -65,7 +65,9 @@ class TransferItemsFragment : BaseTripFragment(), AdapterView.OnItemSelectedList
         })
 
         tripsVm.statusMessage.observe(viewLifecycleOwner, Observer { status ->
-            transfer_status_tv.text = status
+            val message = status.getContentIfNotHandled()
+            if (message != null)
+                transfer_status_tv.text = message
         })
     }
 

@@ -42,7 +42,9 @@ class UnloadCarFragment : BaseTripFragment() {
         })
 
         tripsVm.statusMessage.observe(viewLifecycleOwner, Observer { status ->
-            unload_car_status_tv.text = status
+            val message = status.getContentIfNotHandled()
+            if(message != null)
+                unload_car_status_tv.text = message
         })
     }
 }

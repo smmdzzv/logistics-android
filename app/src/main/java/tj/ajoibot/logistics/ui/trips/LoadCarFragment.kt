@@ -53,7 +53,9 @@ class LoadCarFragment : BaseTripFragment() {
         })
 
         tripsVm.statusMessage.observe(viewLifecycleOwner, Observer { status ->
-            load_status_tv.text = status
+            val message = status.getContentIfNotHandled()
+            if(message != null)
+                load_status_tv.text = message
         })
     }
 
